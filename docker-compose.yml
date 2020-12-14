@@ -1,0 +1,44 @@
+services:
+  dev:
+    image: node:12-alpine
+    container_name: shipment_api_dev
+    command:  sh -c "npm run migrate && npm run dev"
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app:cached
+    networks:
+      - shipment-network
+    depends_on:
+      - db
+
+  test:
+    image: node:12-alpine
+    container_name: shipment_api_test
+    command:  sh -c "npm run migrate && npm run test"
+    working_dir: /app
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./:/app:cached
+    networks:
+      - shipment-network
+    depends_on:
+      - db
+  db:
+    image: postgres
+    container_name: shipment
+    ports:
+      - "5432:5432"
+    volumes:
+      - database:/var/lib/postgresql/data
+    networks:
+      - shipment-network
+
+volumes:
+  database:
+
+networks:
+  shipment-network:
+    driver: bridge
