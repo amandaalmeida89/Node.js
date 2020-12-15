@@ -14,10 +14,10 @@ module.exports = {
       status: {
         type: Sequelize.STRING
       },
-      shipmentId: {
-        allowNull: false,
+      ShipmentId: {
+        allowNull: true,
         type: Sequelize.INTEGER,
-        references: { model: 'Shipment', key: 'id' }
+        references: { model: 'Shipments', key: 'id' }
       },
       createdAt: {
         allowNull: false,

@@ -9,9 +9,11 @@ class ShipmentService {
     }
   }
 
-  static async addShipment(newShipment) {
+  static async addShipment(orders) {
     try {
-      return await database.Shipment.create(newShipment)
+      const ship = await database.Shipment.create()
+      await ship.addOrders(orders)
+      return ship;
     } catch (error) {
       throw error
     }

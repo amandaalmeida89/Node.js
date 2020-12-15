@@ -20,14 +20,12 @@ class ShipmentController {
   }
 
   static async addShipment(req, res) {
-    console.log(req.body.name, req.body.is_alive)
-    if (!req.body.name || !req.body.is_alive) {
+    if (!req.body.orders) {
       util.setError(400, 'Please provide complete details')
       return util.send(res)
     }
-    const newShipment = req.body
     try {
-      const createdShipment = await ShipmentService.addShipment(newShipment)
+      const createdShipment = await ShipmentService.addShipment(req.body.orders)
       util.setSuccess(201, 'Shipment Added!', createdShipment)
       return util.send(res)
     } catch (error) {

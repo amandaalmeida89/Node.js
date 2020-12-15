@@ -7,4 +7,4 @@ router.post('/', ShipmentController.addShipment)
 router.get('/:id', ShipmentController.getShipment)
 router.put('/:id', ShipmentController.updatedShipment)
 router.delete('/:id', ShipmentController.deleteShipment)
-export default routers
+export default router;

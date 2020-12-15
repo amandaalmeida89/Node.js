@@ -9,10 +9,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Shipment.init({
-    number: DataTypes.STRING,
-    date: DataTypes.DATE
   }, {
     sequelize,
+    paranoid: true,
     modelName: 'Shipment',
   });
   return Shipment;
